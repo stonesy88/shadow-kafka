@@ -1,0 +1,58 @@
+{
+  "generators": [
+    {
+      "topic": "carehome.resident.activity.observation.v1",
+       "intervalMs": 1000,
+      "value": {
+        "patientId": { "_gen": "uuid" },
+
+        "period": {
+          "_gen": "oneOf",
+          "choices": ["day", "night"]
+        },
+
+        "activity": {
+          "_gen": "oneOf",
+          "choices": [
+            { "code": "248221007", "display": "Sleeping" },
+            { "code": "225336000", "display": "Seated in bed" },
+            { "code": "225337009", "display": "Seated in chair" },
+            { "code": "248220008", "display": "Eating" },
+            { "code": "229065009", "display": "Drinking" },
+            { "code": "248218007", "display": "Walking" },
+            { "code": "225338004", "display": "On toilet" },
+            { "code": "300480000", "display": "Showering" },
+            { "code": "229058002", "display": "Reading" },
+            { "code": "229064008", "display": "Watching television" },
+            { "code": "229061005", "display": "Talking/visiting" },
+            { "code": "229062003", "display": "Listening to music" },
+            { "code": "229063008", "display": "Physiotherapy/exercises" },
+
+             
+            { "code": "271593001", "display": "Fall in residential institution" },
+            { "code": "248610000", "display": "Wandering behaviour" },
+            { "code": "225318003", "display": "Calling for help" },
+            { "code": "225337001", "display": "Agitated or restless" },
+            { "code": "225320001", "display": "Sleeping excessively" },
+            { "code": "225339007", "display": "Aggressive behaviour" },
+            { "code": "225341003", "display": "Unresponsive" },
+
+            { "code": "248219004", "display": "Other activity" }
+          ]
+        },
+
+        "timestamp": { "_gen": "now" }
+      }
+    }
+  ],
+  "connections": {
+    "kafka": {
+      "kind": "kafka",
+      "producerConfigs": {
+        "bootstrap.servers": "localhost:9092",
+        "key.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer",
+        "value.serializer": "io.shadowtraffic.kafka.serdes.JsonSerializer"
+      }
+    }
+  }
+}
